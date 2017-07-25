@@ -2,9 +2,13 @@ package com.derek.fategr.features.news.adapter
 
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
+import com.derek.fategr.R
 import com.derek.fategr.commons.RedditNewsItem
 import com.derek.fategr.commons.adapter.ViewType
 import com.derek.fategr.commons.adapter.ViewTypeDelegateAdapter
+import com.derek.fategr.commons.extensions.getFriendlyTime
+import com.derek.fategr.commons.extensions.inflate
+import com.derek.fategr.commons.extensions.loadImg
 import kotlinx.android.synthetic.main.news_item.view.*
 
 /**
@@ -22,8 +26,7 @@ class NewsDelegateAdapter: ViewTypeDelegateAdapter{
         holder.bind(item as RedditNewsItem)
     }
 
-    class TurnsViewHolder(parent: ViewGroup): RecyclerView.ViewHolder{
-        parent.inflate(R.layout.news_item)){
+    class TurnsViewHolder(parent: ViewGroup): RecyclerView.ViewHolder(parent.inflate(R.layout.news_item)){
             fun bind(item: RedditNewsItem) = with(itemView){
                 img_thumbnail.loadImg(item.thumbnail)
                 description.text = item.title
@@ -31,6 +34,5 @@ class NewsDelegateAdapter: ViewTypeDelegateAdapter{
                 comments.text = "${item.numComments} comments"
                 time.text = item.created.getFriendlyTime()
             }
-        }
     }
 }

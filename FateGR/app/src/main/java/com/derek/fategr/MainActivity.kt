@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar
 import android.view.View
 import android.view.Menu
 import android.view.MenuItem
+import com.derek.fategr.features.news.NewsFragment
 
 class MainActivity : AppCompatActivity() {
 

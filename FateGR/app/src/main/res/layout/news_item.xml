@@ -55,7 +55,7 @@
         android:layout_alignRight="@+id/author"
         android:layout_below="@+id/description"
         android:gravity="right"
-        android:textColor="10bcc9"
+        android:textColor="#10bcc9"
         android:textSize="10sp"
         android:textStyle="bold"
         tools:ignor="SmallSp"
