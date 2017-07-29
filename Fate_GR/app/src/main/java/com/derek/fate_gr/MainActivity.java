@@ -6,6 +6,7 @@ import android.util.Log;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.derek.fate_gr.adapter.CommentAdapter;
 import com.derek.fate_gr.adapter.CustomListAdapter;
 import com.derek.fate_gr.adapter.JSONManager;
 import com.derek.fate_gr.model.Feed;
@@ -31,7 +32,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        init();
+
+        CommentAdapter cdap = new CommentAdapter();
+        cdap.init();
+        //init();
 
     }
 
