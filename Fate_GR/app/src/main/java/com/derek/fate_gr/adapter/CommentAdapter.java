@@ -48,7 +48,7 @@ public class CommentAdapter {
                 ArrayList<CommentChildren> cf = response.body().get(1).getData().getChildren();
 
                 for(int i = 0;i < cf.size();i++){
-                    System.out.println(cf.get(i).getComments().getAuthor());
+                    System.out.println(cf.get(i).getComments().getBody());
                 }
             }
 

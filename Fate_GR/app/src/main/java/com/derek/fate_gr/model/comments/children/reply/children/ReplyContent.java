@@ -1,32 +1,29 @@
-package com.derek.fate_gr.model.comments.children;
+package com.derek.fate_gr.model.comments.children.reply.children;
 
-import com.derek.fate_gr.model.comments.children.reply.Reply;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-
-import java.util.ArrayList;
 
 /**
  * Created by Michael on 7/29/2017.
  */
 
-public class Comment {
+public class ReplyContent {
 
     @SerializedName("author")
     @Expose
     private String author;
 
- /*   @SerializedName("replies")
+    @SerializedName("parent_id")
     @Expose
-    private Reply replies; */
-
-    @SerializedName("id")
-    @Expose
-    private String id;
+    private String parent_id;
 
     @SerializedName("body")
     @Expose
     private String body;
+
+    @SerializedName("depth")
+    @Expose
+    private String depth;
 
     public String getAuthor() {
         return author;
@@ -36,12 +33,12 @@ public class Comment {
         this.author = author;
     }
 
-    public String getId() {
-        return id;
+    public String getParent_id() {
+        return parent_id;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setParent_id(String parent_id) {
+        this.parent_id = parent_id;
     }
 
     public String getBody() {
@@ -50,5 +47,13 @@ public class Comment {
 
     public void setBody(String body) {
         this.body = body;
+    }
+
+    public String getDepth() {
+        return depth;
+    }
+
+    public void setDepth(String depth) {
+        this.depth = depth;
     }
 }
