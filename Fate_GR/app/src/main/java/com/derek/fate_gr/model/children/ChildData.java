@@ -31,8 +31,31 @@ public class ChildData {
 
     @SerializedName("url")
     @Expose
-
     private String url;
+
+    @SerializedName("permalink")
+    @Expose
+    private String permalink;
+
+    @SerializedName("created")
+    @Expose
+    private String created_date;
+
+    public String getPermalink() {
+        return permalink;
+    }
+
+    public void setPermalink(String permalink) {
+        this.permalink = permalink;
+    }
+
+    public String getCreated_date() {
+        return created_date;
+    }
+
+    public void setCreated_date(String created_date) {
+        this.created_date = created_date;
+    }
 
     public String getTitle() {
         return title;
@@ -91,6 +114,8 @@ public class ChildData {
                 ", author='" + author + '\'' +
                 ", thumbnail='" + thumbnail + '\'' +
                 ", url='" + url + '\'' +
+                ", permalink='" + permalink + '\'' +
+                ", created_data='" + created_date + '\'' +
                 '}';
     }
 }
