@@ -1,6 +1,5 @@
 package com.derek.fate_gr.model.comments;
 
-import com.derek.fate_gr.model.children.Children;
 import com.derek.fate_gr.model.comments.children.CommentChildren;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -13,16 +12,15 @@ import java.util.ArrayList;
 
 public class CommentData {
 
-    @SerializedName("data")
+     @SerializedName("children")
     @Expose
     private ArrayList<CommentChildren> children;
 
-    public ArrayList<CommentChildren> getCommentChildren() {
+    public ArrayList<CommentChildren> getChildren() {
         return children;
     }
 
     public void setChildren(ArrayList<CommentChildren> children) {
         this.children = children;
     }
-
 }

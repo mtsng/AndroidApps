@@ -12,13 +12,13 @@ public class CommentChildren {
 
     @SerializedName("data")
     @Expose
-    private Comments comments;
+    private Comment comments;
 
-    public Comments getComments() {
+    public Comment getComments() {
         return comments;
     }
 
-    public void setComments(Comments comments) {
+    public void setComments(Comment comments) {
         this.comments = comments;
     }
 }
