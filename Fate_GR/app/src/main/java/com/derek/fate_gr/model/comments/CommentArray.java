@@ -11,9 +11,9 @@ import java.util.ArrayList;
  * Created by Michael on 7/29/2017.
  */
 
-public class CommentData {
+public class CommentArray {
 
-    @SerializedName("data")
+    @SerializedName("array")
     @Expose
     private ArrayList<CommentChildren> children;
 

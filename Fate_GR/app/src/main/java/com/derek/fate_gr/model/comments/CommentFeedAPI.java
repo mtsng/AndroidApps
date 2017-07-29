@@ -1,8 +1,8 @@
 package com.derek.fate_gr.model.comments;
 
-import com.derek.fate_gr.model.Feed;
-
 import org.w3c.dom.Comment;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -19,6 +19,6 @@ public interface CommentFeedAPI {
 
         @Headers("Content-Type: application/json")
         @GET(BASE_URL + "{permalink}/.json")
-        Call<CommentFeed> getFeed(@Path("permalink") String permalink);
+        Call<List<CommentArray>> getFeed(@Path("permalink") String permalink);
 
 }

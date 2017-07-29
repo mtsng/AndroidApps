@@ -2,19 +2,11 @@ package com.derek.fate_gr.adapter;
 
 import android.content.Context;
 import android.util.Log;
-import android.widget.ListView;
-import android.widget.Toast;
 
-import com.derek.fate_gr.FeedAPI;
-import com.derek.fate_gr.MainActivity;
-import com.derek.fate_gr.R;
-import com.derek.fate_gr.model.comments.CommentFeed;
+import com.derek.fate_gr.model.comments.CommentArray;
 import com.derek.fate_gr.model.comments.CommentFeedAPI;
-import com.derek.fate_gr.model.comments.children.Comments;
 
-import org.w3c.dom.Comment;
-
-import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -44,17 +36,18 @@ public class CommentAdapter {
                 .build();
 
         CommentFeedAPI commentfeedAPI = retrofit.create(com.derek.fate_gr.model.comments.CommentFeedAPI.class);
-        Call<CommentFeed> call = commentfeedAPI.getFeed(ex);
+        Call<List<CommentArray>> call = commentfeedAPI.getFeed(ex);
 
-        call.enqueue(new Callback<CommentFeed>() {
+        call.enqueue(new Callback<List<CommentArray>>() {
             @Override
-            public void onResponse(Call<CommentFeed> call, Response<CommentFeed> response) {
+            public void onResponse(Call<List<CommentArray>> call, Response<List<CommentArray>> response) {
                 Log.d(TAG, "onResponse: Server Respond: " + response.toString());
                 Log.d(TAG, "onResponse: Received info: " + response.body().toString());
+                System.out.println(response.body().get(1));
             }
 
             @Override
-            public void onFailure(Call<CommentFeed> call, Throwable t) {
+            public void onFailure(Call<List<CommentArray>> call, Throwable t) {
                 Log.e(TAG, "onFailure: Something went wrong: " + t.getMessage());
             }
         });
