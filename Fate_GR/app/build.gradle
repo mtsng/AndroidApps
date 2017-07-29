@@ -40,4 +40,7 @@ dependencies {
     //Universal Image Loader
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
 
+    //Design Library needed to Coordinate layout
+    compile 'com.android.support:design:25.3.1'
+
 }
