@@ -1,4 +1,4 @@
-package com.derek.fate_gr.adapter;
+package com.derek.fate_gr.parser;
 
 import android.util.Log;
 import android.widget.Toast;
@@ -21,13 +21,13 @@ import static android.content.ContentValues.TAG;
  * Created by Michael on 7/28/2017.
  */
 
-public class JSONManager {
+public class PostParser {
 
     private final String BASE_URL = "https://reddit.com/";
 
     private ArrayList<ChildData> child_data;
 
-    public JSONManager(ArrayList<Children> childList){
+    public PostParser(ArrayList<Children> childList){
         child_data = new ArrayList<ChildData>();
         parseChildData(childList);
     }

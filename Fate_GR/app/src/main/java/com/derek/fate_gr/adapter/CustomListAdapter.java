@@ -138,7 +138,7 @@ public class CustomListAdapter  extends ArrayAdapter<ChildData> {
                     .showImageForEmptyUri(defaultImage)
                     .showImageOnFail(defaultImage)
                     .showImageOnLoading(defaultImage).build();
-
+            //System.out.println(imgUrl + "----\n\n");
             //download and display image from url
             imageLoader.displayImage(imgUrl, holder.thumbnailURL, options , new ImageLoadingListener() {
                 @Override
