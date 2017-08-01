@@ -1,11 +1,16 @@
 package com.derek.fate_gr.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.derek.fate_gr.CommentsActivity;
 import com.derek.fate_gr.FeedAPI;
+import com.derek.fate_gr.MainActivity;
 import com.derek.fate_gr.R;
 import com.derek.fate_gr.model.Feed;
 import com.derek.fate_gr.model.children.ChildData;
@@ -33,6 +38,9 @@ public class PostAdapter {
     private Context mContext;
     private ListView mListView;
 
+    private ArrayList<Children> childrenList;
+    private PostParser parsedPosts;
+
     public PostAdapter(Context context, ListView listView){
         mContext = context;
         mListView = listView;
@@ -53,9 +61,9 @@ public class PostAdapter {
                 Log.d(TAG, "onResponse: Server Respond: " + response.toString());
                 Log.d(TAG, "onResponse: Received info: " + response.body().toString());
 
-                ArrayList<Children> childrenList = response.body().getData().getChildren();
-                PostParser jManager = new PostParser(childrenList);
-                ArrayList<ChildData> cData = jManager.getChildData();
+                childrenList = response.body().getData().getChildren();
+                parsedPosts = new PostParser(childrenList);
+                final ArrayList<ChildData> postList = parsedPosts.getChildData();
 /*                for(int i = 0;i < childrenList.size();i++){
                     Log.d(TAG, "onResponse: \n" +
                             "title: " + childrenList.get(i).getData().getTitle() + "\n" +
@@ -65,8 +73,22 @@ public class PostAdapter {
                             "thumbnail: " + childrenList.get(i).getData().getThumbnail() + "\n" +
                             "-------------------------------------------------------------------------\n\n");
                 } */
-                CustomListAdapter customListAdapter = new CustomListAdapter(mContext, R.layout.card_layout_main, cData);
+                CustomListAdapter customListAdapter = new CustomListAdapter(mContext, R.layout.card_layout_main, postList);
                 mListView.setAdapter(customListAdapter);
+
+                mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                        Log.d(TAG, "onItemClick: Clicked: " + postList.get(position));
+                        Intent intent = new Intent(mContext, CommentsActivity.class);
+                        intent.putExtra("@string/post_title", postList.get(position).getTitle());
+                        intent.putExtra("@string/post_selftext", postList.get(position).getSelftext());
+                        intent.putExtra("@string/post_flair", postList.get(position).getFlair_text());
+                        intent.putExtra("@string/post_author", postList.get(position).getAuthor());
+                        intent.putExtra("@string/post_thumbnail", postList.get(position).getThumbnail());
+                        mContext.startActivity(intent);
+                    }
+                });
             }
 
             @Override

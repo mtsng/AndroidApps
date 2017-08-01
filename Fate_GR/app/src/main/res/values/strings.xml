@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Fate_GR</string>
+    <string name="post_title">post_title</string>
+    <string name="post_selftext">post_selftext</string>
+    <string name="post_flair">post_flair</string>
+    <string name="post_author">post_author</string>
+    <string name="post_thumbnail">post_thumbnail</string>
 </resources>

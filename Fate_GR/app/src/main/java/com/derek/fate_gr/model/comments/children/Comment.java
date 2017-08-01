@@ -1,6 +1,5 @@
 package com.derek.fate_gr.model.comments.children;
 
-import com.derek.fate_gr.model.comments.children.reply.Reply;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
