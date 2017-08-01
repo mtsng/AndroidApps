@@ -41,7 +41,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/postContent"
-                    android:text="Content"/>
+                    android:text="Content"
+                    android:layout_marginLeft="10dp"/>
 
             </RelativeLayout>
 
