@@ -1,6 +1,5 @@
 package com.derek.fate_gr.model.children;
 
-import com.derek.fate_gr.model.children.image.Preview;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 

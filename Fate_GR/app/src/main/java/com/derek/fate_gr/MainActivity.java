@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ListView;
 
+import com.derek.fate_gr.adapter.CommentAdapter;
 import com.derek.fate_gr.adapter.PostAdapter;
 
 public class MainActivity extends AppCompatActivity {
@@ -16,12 +17,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ListView listView = (ListView) findViewById(R.id.listView);
 
-       // CommentAdapter cdap = new CommentAdapter();
-       // cdap.init();
-
         PostAdapter pa = new PostAdapter(MainActivity.this, listView);
         pa.init();
-        //init();
 
     }
 }

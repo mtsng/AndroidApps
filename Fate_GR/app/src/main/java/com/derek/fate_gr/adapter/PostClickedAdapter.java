@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -43,12 +44,13 @@ public class PostClickedAdapter {
     private TextView mFlair;
     private ImageView mImage;
     private Intent mIntent;
+    private ListView mCommentView;
     private ProgressBar mProgressBar;
 
     public PostClickedAdapter(Context context, TextView title,
                               TextView author, TextView selftext,
                               TextView flair, ImageView image,
-                              Intent intent, ProgressBar progressbar){
+                              Intent intent, ProgressBar progressbar, ListView listview){
         mContext = context;
         mTitle = title;
         mAuthor = author;
@@ -56,6 +58,7 @@ public class PostClickedAdapter {
         mFlair = flair;
         mImage = image;
         mIntent = intent;
+        mCommentView = listview;
         mProgressBar = progressbar;
         setupImageLoader();
     }
