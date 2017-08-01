@@ -33,7 +33,7 @@ public class CommentsActivity extends AppCompatActivity {
 
     private static String postTitle;
     private static String postAuthor;
-    private static String postThumbnailURL;
+    private static String postImageURL;
     private static String postSelftext;
     private static String postFlair;
 
@@ -52,20 +52,20 @@ public class CommentsActivity extends AppCompatActivity {
         Intent incomingIntent = getIntent();
         postTitle = incomingIntent.getStringExtra("@string/post_title");
         postAuthor = incomingIntent.getStringExtra("@string/post_author");
-        postThumbnailURL = incomingIntent.getStringExtra("@string/post_thumbnail");
+        postImageURL = incomingIntent.getStringExtra("@string/post_image");
         postSelftext = incomingIntent.getStringExtra("@string/post_selftext");
         postFlair = incomingIntent.getStringExtra("@string/post_flair");
 
         TextView title = (TextView) findViewById(R.id.postTitle);
         TextView author = (TextView) findViewById(R.id.postAuthor);
-        ImageView thumbnail = (ImageView) findViewById(R.id.postImage);
+        ImageView image = (ImageView) findViewById(R.id.postImage);
         //TODO add selftext and flair
         Button btnReply = (Button) findViewById(R.id.btnPostReply);
         ProgressBar progressBar = (ProgressBar) findViewById(R.id.postLoadingProgressBar);
 
         title.setText(postTitle);
         author.setText(postAuthor);
-        displayImage(postThumbnailURL, thumbnail, progressBar);
+        displayImage(postImageURL, image, progressBar);
     }
 
     private void displayImage(String imgUrl, ImageView imgView, final ProgressBar progressBar){
@@ -78,7 +78,7 @@ public class CommentsActivity extends AppCompatActivity {
                 .showImageForEmptyUri(defaultImage)
                 .showImageOnFail(defaultImage)
                 .showImageOnLoading(defaultImage).build();
-        //System.out.println(imgUrl + "----\n\n");
+
         //download and display image from url
         imageLoader.displayImage(imgUrl, imgView, options , new ImageLoadingListener() {
             @Override

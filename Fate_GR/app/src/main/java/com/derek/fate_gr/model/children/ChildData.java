@@ -1,5 +1,6 @@
 package com.derek.fate_gr.model.children;
 
+import com.derek.fate_gr.model.children.image.Preview;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -40,6 +41,10 @@ public class ChildData {
     @SerializedName("created")
     @Expose
     private String created_date;
+
+   /* @SerializedName("preview")
+    @Expose
+    private Preview preview; */
 
     public String getPermalink() {
         return permalink;

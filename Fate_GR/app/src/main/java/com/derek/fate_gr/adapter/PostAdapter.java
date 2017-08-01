@@ -85,7 +85,7 @@ public class PostAdapter {
                         intent.putExtra("@string/post_selftext", postList.get(position).getSelftext());
                         intent.putExtra("@string/post_flair", postList.get(position).getFlair_text());
                         intent.putExtra("@string/post_author", postList.get(position).getAuthor());
-                        intent.putExtra("@string/post_thumbnail", postList.get(position).getThumbnail());
+                        intent.putExtra("@string/post_image", postList.get(position).getUrl());
                         mContext.startActivity(intent);
                     }
                 });
