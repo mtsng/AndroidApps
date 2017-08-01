@@ -58,7 +58,7 @@ public class CommentsActivity extends AppCompatActivity {
 
         TextView title = (TextView) findViewById(R.id.postTitle);
         TextView author = (TextView) findViewById(R.id.postAuthor);
-        ImageView thumbnail = (ImageView) findViewById(R.id.postThumbnail);
+        ImageView thumbnail = (ImageView) findViewById(R.id.postImage);
         //TODO add selftext and flair
         Button btnReply = (Button) findViewById(R.id.btnPostReply);
         ProgressBar progressBar = (ProgressBar) findViewById(R.id.postLoadingProgressBar);
