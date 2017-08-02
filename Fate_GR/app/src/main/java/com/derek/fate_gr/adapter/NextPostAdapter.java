@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.derek.fate_gr.CommentsActivity;
 import com.derek.fate_gr.FeedAPI;
 import com.derek.fate_gr.MainActivity;
+import com.derek.fate_gr.PaginationFeedAPI;
 import com.derek.fate_gr.R;
 import com.derek.fate_gr.model.Feed;
 import com.derek.fate_gr.model.children.ChildData;
@@ -28,11 +29,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import static android.content.ContentValues.TAG;
 
 /**
- * Created by Michael on 7/29/2017.
+ * Created by Michael on 8/2/2017.
  */
 
-public class PostAdapter {
-
+public class NextPostAdapter {
     private final String BASE_URL = "https://reddit.com/";
 
     private Context mContext;
@@ -40,10 +40,9 @@ public class PostAdapter {
 
     private ArrayList<Children> childrenList;
     private PostParser parsedPosts;
-
     ArrayList<ChildData> postList;
 
-    public PostAdapter(Context context, ListView listView){
+    public NextPostAdapter(Context context, ListView listView){
         mContext = context;
         mListView = listView;
     }
@@ -54,8 +53,8 @@ public class PostAdapter {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        FeedAPI feedAPI = retrofit.create(com.derek.fate_gr.FeedAPI.class);
-        Call<Feed> call = feedAPI.getFeed();
+        PaginationFeedAPI pFeedAPI = retrofit.create(com.derek.fate_gr.PaginationFeedAPI.class);
+        Call<Feed> call = pFeedAPI.getPaginationFeed(25, MainActivity.after);
 
         call.enqueue(new Callback<Feed>() {
             @Override
@@ -64,19 +63,10 @@ public class PostAdapter {
                 Log.d(TAG, "onResponse: Received info: " + response.body().toString());
 
                 MainActivity.after = response.body().getData().getAfter_id();
-                //System.out.println(after_id);
                 childrenList = response.body().getData().getChildren();
                 parsedPosts = new PostParser(childrenList);
                 postList = parsedPosts.getChildData();
-/*                for(int i = 0;i < childrenList.size();i++){
-                    Log.d(TAG, "onResponse: \n" +
-                            "title: " + childrenList.get(i).getData().getTitle() + "\n" +
-                            "author: " + childrenList.get(i).getData().getAuthor() + "\n" +
-                            "url: " + childrenList.get(i).getData().getUrl() + "\n" +
-                            "flair: " + childrenList.get(i).getData().getFlair_text() + "\n" +
-                            "thumbnail: " + childrenList.get(i).getData().getThumbnail() + "\n" +
-                            "-------------------------------------------------------------------------\n\n");
-                } */
+
                 CustomListAdapter customListAdapter = new CustomListAdapter(mContext, R.layout.card_layout_main, postList);
                 mListView.setAdapter(customListAdapter);
 

@@ -16,6 +16,10 @@ public class Data {
     @Expose
     private ArrayList<Children> children;
 
+    @SerializedName("after")
+    @Expose
+    private String after_id;
+
     public ArrayList<Children> getChildren() {
         return children;
     }
@@ -24,6 +28,13 @@ public class Data {
         this.children = children;
     }
 
+    public String getAfter_id() {
+        return after_id;
+    }
+
+    public void setAfter_id(String after_id) {
+        this.after_id = after_id;
+    }
 
     @Override
     public String toString() {
