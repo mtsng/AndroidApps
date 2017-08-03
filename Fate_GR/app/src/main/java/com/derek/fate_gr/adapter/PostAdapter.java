@@ -26,6 +26,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import static android.content.ContentValues.TAG;
+import static com.derek.fate_gr.MainActivity.postList;
 
 /**
  * Created by Michael on 7/29/2017.
@@ -41,7 +42,7 @@ public class PostAdapter {
     private ArrayList<Children> childrenList;
     private PostParser parsedPosts;
 
-    ArrayList<ChildData> postList;
+    //ArrayList<ChildData> postList;
 
     public PostAdapter(Context context, ListView listView){
         mContext = context;

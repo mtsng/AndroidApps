@@ -115,11 +115,6 @@ public class CustomListAdapter  extends ArrayAdapter<ChildData> {
                 result = convertView;
             }
 
-
-//            Animation animation = AnimationUtils.loadAnimation(mContext,
-//                    (position > lastPosition) ? R.anim.load_down_anim : R.anim.load_up_anim);
-//            result.startAnimation(animation);
-
             lastPosition = position;
 
             holder.title.setText(title);
@@ -139,6 +134,7 @@ public class CustomListAdapter  extends ArrayAdapter<ChildData> {
                     .showImageOnFail(defaultImage)
                     .showImageOnLoading(defaultImage).build();
             //System.out.println(imgUrl + "----\n\n");
+            notifyDataSetChanged();
             if(imgUrl.equals("self")){
                 imgUrl = "http://www.alter-web.jp/uploads/blog_alter/20170705180626_Fm9HI7lJ.jpg";
             }

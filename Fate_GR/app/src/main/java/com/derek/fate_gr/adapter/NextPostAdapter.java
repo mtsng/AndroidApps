@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -27,6 +28,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import static android.content.ContentValues.TAG;
+import static com.derek.fate_gr.MainActivity.postList;
 
 /**
  * Created by Michael on 8/2/2017.
@@ -40,7 +42,7 @@ public class NextPostAdapter {
 
     private ArrayList<Children> childrenList;
     private PostParser parsedPosts;
-    ArrayList<ChildData> postList;
+    //ArrayList<ChildData> postList;
 
     public NextPostAdapter(Context context, ListView listView){
         mContext = context;
@@ -65,7 +67,11 @@ public class NextPostAdapter {
                 MainActivity.after = response.body().getData().getAfter_id();
                 childrenList = response.body().getData().getChildren();
                 parsedPosts = new PostParser(childrenList);
-                postList = parsedPosts.getChildData();
+                addAll(parsedPosts.getChildData());
+
+
+                savePosition();
+
 
                 CustomListAdapter customListAdapter = new CustomListAdapter(mContext, R.layout.card_layout_main, postList);
                 mListView.setAdapter(customListAdapter);
@@ -92,5 +98,32 @@ public class NextPostAdapter {
                 Toast.makeText(mContext, "Something went wrong", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private void addAll(ArrayList<ChildData> cdList){
+        for(ChildData cd: cdList){
+            postList.add(cd);
+        }
+    }
+
+    private void savePosition(){
+        final int positionToSave = mListView.getFirstVisiblePosition();
+        mListView.post(new Runnable() {
+            @Override
+            public void run() {
+                mListView.setSelection(positionToSave);
+            }
+        });
+
+        mListView.getViewTreeObserver().addOnPreDrawListener((new ViewTreeObserver.OnPreDrawListener() {
+            @Override
+            public boolean onPreDraw() {
+                if(mListView.getFirstVisiblePosition() == positionToSave){
+                    mListView.getViewTreeObserver().removeOnPreDrawListener(this);
+                    return true;
+                }
+                return false;
+            }
+        }));
     }
 }
