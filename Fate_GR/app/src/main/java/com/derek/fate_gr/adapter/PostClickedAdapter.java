@@ -1,5 +1,6 @@
 package com.derek.fate_gr.adapter;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -37,7 +38,7 @@ public class PostClickedAdapter {
 
     private static String postTitle;
     private static String postAuthor;
-    private static String postImageURL;
+    private static String postThumbnailURL;
     private static String postSelftext;
     private static String postFlair;
 
@@ -46,33 +47,35 @@ public class PostClickedAdapter {
     private TextView mAuthor;
     private TextView mSelftext;
     private TextView mFlair;
-    private ImageView mImage;
+    private ImageView mThumbnail;
     private Intent mIntent;
     private ListView mCommentView;
+    private Button btnReply;
     private ProgressBar mProgressBar;
     private String permalink;
     private String BASE_URL = "https://www.reddit.com";
 
     public PostClickedAdapter(Context context, TextView title,
                               TextView author, TextView selftext,
-                              TextView flair, ImageView image,
-                              Intent intent, ProgressBar progressbar, ListView listview){
+                              TextView flair, ImageView thumbnail,
+                              Intent intent, ProgressBar progressbar, ListView listview, Button btn){
         mContext = context;
         mTitle = title;
         mAuthor = author;
         mSelftext = selftext;
         mFlair = flair;
-        mImage = image;
+        mThumbnail = thumbnail;
         mIntent = intent;
         mCommentView = listview;
         mProgressBar = progressbar;
+        btnReply = btn;
         setupImageLoader();
     }
 
     public void initPost(){
         postTitle = mIntent.getStringExtra("@string/post_title");
         postAuthor = mIntent.getStringExtra("@string/post_author");
-        postImageURL = mIntent.getStringExtra("@string/post_image");
+        postThumbnailURL = mIntent.getStringExtra("@string/post_thumbnail");
         postSelftext = mIntent.getStringExtra("@string/post_selftext");
         postFlair = mIntent.getStringExtra("@string/post_flair");
         permalink = mIntent.getStringExtra("@string/post_permalink");
@@ -81,9 +84,17 @@ public class PostClickedAdapter {
         mAuthor.setText(postAuthor);
         mFlair.setText(postFlair);
         mSelftext.setText(postSelftext);
-        displayImage(postImageURL, mImage, mProgressBar);
+        displayImage(postThumbnailURL, mThumbnail, mProgressBar);
 
-        mImage.setOnClickListener(new View.OnClickListener(){
+        btnReply.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d(TAG, "onClick: reply");
+                getUserComment();
+            }
+        });
+
+        mThumbnail.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 Log.d(TAG, "onClick: Opening URL in webview: ");
@@ -92,6 +103,20 @@ public class PostClickedAdapter {
                 mContext.startActivity(intent);
             }
         });
+
+
+    }
+
+    private void getUserComment(){
+        final Dialog dialog = new Dialog(mContext);
+        dialog.setTitle("dialog");
+        dialog.setContentView(R.layout.comment_input_dialog);
+
+        int width = (int)(mContext.getResources().getDisplayMetrics().widthPixels*.95);
+        int height = (int)(mContext.getResources().getDisplayMetrics().widthPixels*.95);
+
+        dialog.getWindow().setLayout(width, height);
+        dialog.show();
     }
 
     private void displayImage(String imgUrl, ImageView imgView, final ProgressBar progressBar){

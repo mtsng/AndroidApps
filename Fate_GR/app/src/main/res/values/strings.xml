@@ -4,6 +4,6 @@
     <string name="post_selftext">post_selftext</string>
     <string name="post_flair">post_flair</string>
     <string name="post_author">post_author</string>
-    <string name="post_image">post_image</string>
+    <string name="post_thumbnail">post_image</string>
     <string name="post_permalink">post_permalink</string>
 </resources>

@@ -34,7 +34,7 @@ public class CommentsActivity extends AppCompatActivity {
         TextView author = (TextView) findViewById(R.id.postAuthor);
         TextView selftext = (TextView) findViewById(R.id.postContent);
         TextView flair = (TextView) findViewById(R.id.postFlair);
-        ImageView image = (ImageView) findViewById(R.id.postImage);
+        ImageView thumbnail = (ImageView) findViewById(R.id.postThumbnail);
         ListView commentList = (ListView) findViewById(R.id.commentListView);
         ProgressBar commentProgressBar = (ProgressBar) findViewById(R.id.commentsLoadingProgressBar);
         TextView progressText = (TextView) findViewById(R.id.progressText);
@@ -46,7 +46,7 @@ public class CommentsActivity extends AppCompatActivity {
         Intent incomingIntent = getIntent();
 
         PostClickedAdapter pca = new PostClickedAdapter(this, title, author, selftext,
-                flair, image, incomingIntent, postProgressBar, commentList);
+                flair, thumbnail, incomingIntent, postProgressBar, commentList, btnReply);
 
         CommentAdapter ca = new CommentAdapter(this, commentList, commentProgressBar, progressText, incomingIntent);
 

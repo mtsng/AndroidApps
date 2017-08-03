@@ -14,28 +14,29 @@
             android:layout_marginTop="5dp">
 
             <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:gravity="center"
-                android:id="@+id/postImage"
-                android:layout_below="@+id/basic_info"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp"/>
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:id="@+id/postThumbnail"/>
+
+            <Button
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:id="@+id/btnPostReply"
+                android:text="reply"
+                android:textSize="8sp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:layout_alignBottom="@+id/postThumbnail"/>
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:layout_below="@+id/postImage">
-
-                <Button
-                    android:layout_width="100dp"
-                    android:layout_height="50dp"
-                    android:id="@+id/btnPostReply"
-                    android:text="reply"
-                    android:textSize="8sp"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="10dp"/>
+                android:scaleType="centerCrop"
+                android:layout_below="@+id/postThumbnail">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -50,7 +51,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:id="@+id/basic_info">
+                android:id="@+id/basic_info"
+                android:layout_toRightOf="@+id/postThumbnail">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -87,6 +89,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:id="@+id/postLoadingProgressBar"
+                android:layout_alignBottom="@+id/basic_info"
                 android:layout_centerInParent="true"/>
         </RelativeLayout>
 

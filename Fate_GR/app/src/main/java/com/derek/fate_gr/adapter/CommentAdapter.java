@@ -1,9 +1,11 @@
 package com.derek.fate_gr.adapter;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -79,6 +81,13 @@ public class CommentAdapter {
                 CommentsListAdapter cadapter = new CommentsListAdapter(mContext, R.layout.comments_layout, comments);
                 mListView.setAdapter(cadapter);
 
+                mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                        getUserComment();
+                    }
+                });
+
                 mProgressBar.setVisibility(View.GONE);
                 mProgressText.setText("");
             }
@@ -88,5 +97,17 @@ public class CommentAdapter {
                 Log.e(TAG, "onFailure: Something went wrong: " + t.getMessage());
             }
         });
+    }
+
+    private void getUserComment(){
+        final Dialog dialog = new Dialog(mContext);
+        dialog.setTitle("dialog");
+        dialog.setContentView(R.layout.comment_input_dialog);
+
+        int width = (int)(mContext.getResources().getDisplayMetrics().widthPixels*.95);
+        int height = (int)(mContext.getResources().getDisplayMetrics().widthPixels*.95);
+
+        dialog.getWindow().setLayout(width, height);
+        dialog.show();
     }
 }
